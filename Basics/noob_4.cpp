@@ -1,8 +1,30 @@
 #include <iostream>
 using namespace std;
 
+void func();
+
+float sum(float a, float b){
+    return a + b;
+}
+
+int sum (int a, int b){
+    return a + b;
+}
+// just like Julia's multiple dispatch
+
+template<typename T> // T is a generic type
+void swap(T &a, T &b){ // &a pass a to the function by reference
+// the standard behaviour is to pass just the value of the variable
+// which does not let you assign a new value to the variable
+    T temp = a;
+    a = b;
+    b = temp;
+}
+
 int main(){
 
+    func();
+    
     int year, month;
     cout << "Enter year and month: ";
     cin >> year >> month;
@@ -33,4 +55,8 @@ int main(){
             break;
     }
     system("pause");
+}
+
+void func(){
+    cout << "Hello World" << endl;
 }

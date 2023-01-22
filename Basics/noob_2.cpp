@@ -28,6 +28,12 @@ int main() {
 
     a == b ? cout << "a == b" << endl : cout << "a != b" << endl;
 
+    a = 10;
+    do {
+        cout << a << endl;
+        a++;
+    } while (a < 12);
+
     system("pause");
     return 0;
 }
