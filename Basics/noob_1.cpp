@@ -123,6 +123,9 @@ int main()
     }
     
     std::cout << "Hello World" << 100/27  << std::endl;
-    system("pause");
+    system("pause"); 
+    // system("pause>0") or system("pause>null") does the same but prints no waiting message
+    // cin.get() may be a better option that doesn't require windows
+
     return 0;
 }

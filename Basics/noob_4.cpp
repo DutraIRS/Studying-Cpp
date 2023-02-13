@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 void func();
@@ -20,6 +21,9 @@ void swap(T &a, T &b){ // &a pass a to the function by reference
     a = b;
     b = temp;
 }
+using pair_list_t = std::vector<std::pair<std::string, double>>;
+typedef std::vector<std::pair<std::string, int>> vec_pair_t;
+// typedef is a way to define a new type
 
 int main(){
 
