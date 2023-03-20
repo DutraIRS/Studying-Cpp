@@ -35,7 +35,7 @@ int main() {
                 cout << (int)num1 % (int)num2 << endl;
             }
             else {
-                cout << "Invalid input" << &*num1 << endl;
+                cout << "Invalid input" << endl;
             }
             break;
             }
