@@ -111,7 +111,6 @@ void problemFour()
     {
         fNumber /= 10;
         iCount++;
-        cout << fNumber << iCount << endl;
     }
 
     cout << iCount << endl;
