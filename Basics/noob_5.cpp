@@ -5,6 +5,9 @@ using std::cout;
 using std::endl;
 using std::string;
 
+int factorial(int iNum);
+int recursive_factorial(int iNum);
+
 int main()
 {
     int arriExample[2][3] = {{1, 2, 3}, {4, 5, 6}};
@@ -60,5 +63,39 @@ int main()
         }
     }
 
+     factorial(2);
+     factorial(3);
+     factorial(4);
+     factorial(1);
+     factorial(0);
+     factorial(5);
+
+     cout << recursive_factorial(2) << endl;
+     cout << recursive_factorial(3) << endl;
+     cout << recursive_factorial(4) << endl;
+     cout << recursive_factorial(1) << endl;
+     cout << recursive_factorial(0) << endl;
+     cout << recursive_factorial(5) << endl;
+
     return 0;
+}
+
+int factorial(int iNum)
+{
+     int iResult = 1;
+
+     for (int i = 2; i <= iNum; i++)
+     {
+          iResult *= i;
+     }
+
+     cout << iResult << endl;
+     return iResult;
+}
+
+int recursive_factorial(int iNum)
+{
+     if (iNum == 1) return 1;
+
+     return recursive_factorial(iNum - 1)*iNum;
 }
