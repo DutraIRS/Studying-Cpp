@@ -103,19 +103,43 @@ Problem 4:
 */
 
 void printArray(int iArray[], int iSize);
-void operateArrays(int iArray1[], int iArray2[], char cOperation, int iSize);
+void operateArrays(int (&iArray1)[], int iArray2[], char cOperation, int iSize);
+void bazinga();
+void tictactoe(char (&cArray)[], int iIndex, char cPlay);
 
 int main()
 {
+    // 1
     int iArray[] = {1, 1, 2, 3, 5, 8, 13};
     printArray(iArray, 7);
 
+    // 2
     int iArray1[] = {1, 2, 3, 4, 5};
     int iArray2[] = {2, 4, 1, 2, 3};
+    
+    cout << "\niArray1 + iArray2 = ";
     operateArrays(iArray1, iArray2, '+', 5);
+    printArray(iArray1, 5);
+    
+    cout << "\niArray1 - iArray2 = ";
+    operateArrays(iArray1, iArray2, '-', 5);
+    printArray(iArray1, 5);
 
-    cout << "iArray1 + iArray2 = " << iArray1 << endl;
-    system("pause");
+    cout << "\niArray1 / iArray2 = ";
+    operateArrays(iArray1, iArray2, '/', 5);
+
+    // 3
+//    bazinga();
+
+    // 4
+    char cArray[] = {'?', '?', '?', '?', '?', '?', '?', '?', '?'};
+    tictactoe(cArray, 4, 'X');
+    tictactoe(cArray, 4, 'O');
+    tictactoe(cArray, 1, 'O');
+    tictactoe(cArray, 0, 'X');
+    tictactoe(cArray, 7, 'O');
+    tictactoe(cArray, 8, 'X');
+
     return 0;
 }
 
@@ -131,7 +155,7 @@ void printArray(int iArray[], int iSize)
     cout << iArray[iSize - 1] << "}" << endl;
 }
 
-void operateArrays(int iArray1[], int iArray2[], char cOperation, int iSize)
+void operateArrays(int (&iArray1)[], int iArray2[], char cOperation, int iSize)
 {
     switch (cOperation)
     {
@@ -150,5 +174,206 @@ void operateArrays(int iArray1[], int iArray2[], char cOperation, int iSize)
     default:
         cout << "Inexistent operation!" << endl;
         break;
+    }
+}
+
+void bazinga()
+{
+    int iScorePlayer1 = 0, iScorePlayer2 = 0;
+    enum Options {rock, paper, scissors, lizard, Spock};
+    
+    while (iScorePlayer1 < 2 && iScorePlayer2 < 2)
+    {
+        string sInput1, sInput2;
+        Options sPlayer1, sPlayer2;
+
+        cout << "Input your moves:" << endl;
+        cin >> sInput1 >> sInput2;
+
+        if (sInput1 == "rock")
+        {
+            sPlayer1 = rock;
+        } else if (sInput1 == "paper")
+        {
+            sPlayer1 = paper;
+        } else if (sInput1 == "scissors")
+        {
+            sPlayer1 = scissors;
+        } else if (sInput1 == "lizard")
+        {
+            sPlayer1 = lizard;
+        } else if (sInput1 == "Spock")
+        {
+            sPlayer1 = Spock;
+        }
+
+        if (sInput2 == "rock")
+        {
+            sPlayer2 = rock;
+        } else if (sInput2 == "paper")
+        {
+            sPlayer2 = paper;
+        } else if (sInput2 == "scissors")
+        {
+            sPlayer2 = scissors;
+        } else if (sInput2 == "lizard")
+        {
+            sPlayer2 = lizard;
+        } else if (sInput2 == "Spock")
+        {
+            sPlayer2 = Spock;
+        }
+
+        switch (sPlayer1)
+        {
+            case rock:
+                switch (sPlayer2)
+                {
+                    case rock:
+                        cout << "Tie!" << endl;
+                        break;
+                    
+                    case scissors:
+                    case lizard:
+                        cout << "Player 1 has scored a point!" << endl;
+                        iScorePlayer1++;
+                        break;
+
+                    case Spock:
+                    case paper:
+                        cout << "Player 2 has scored a point!" << endl;
+                        iScorePlayer2++;
+                        break;
+                }
+                break;
+
+            case paper:
+                switch (sPlayer2)
+                {
+                    case paper:
+                        cout << "Tie!" << endl;
+                        break;
+                    
+                    case rock:
+                    case Spock:
+                        cout << "Player 1 has scored a point!" << endl;
+                        iScorePlayer1++;
+                        break;
+
+                    case scissors:
+                    case lizard:
+                        cout << "Player 2 has scored a point!" << endl;
+                        iScorePlayer2++;
+                        break;
+                }
+                break;
+
+            case scissors:
+                switch (sPlayer2)
+                {
+                    case scissors:
+                        cout << "Tie!" << endl;
+                        break;
+                    
+                    case paper:
+                    case lizard:
+                        cout << "Player 1 has scored a point!" << endl;
+                        iScorePlayer1++;
+                        break;
+                    
+                    case rock:
+                    case Spock:
+                        cout << "Player 2 has scored a point!" << endl;
+                        iScorePlayer2++;
+                        break;
+                }
+                break;
+
+            case lizard:
+                switch (sPlayer2)
+                {
+                    case lizard:
+                        cout << "Tie!" << endl;
+                        break;
+                    
+                    case paper:
+                    case Spock:
+                        cout << "Player 1 has scored a point!" << endl;
+                        iScorePlayer1++;
+                        break;
+
+                    case rock:
+                    case scissors:
+                        cout << "Player 2 has scored a point!" << endl;
+                        iScorePlayer2++;
+                        break;
+                }
+                break;
+
+            case Spock:
+                switch (sPlayer2)
+                {
+                    case Spock:
+                        cout << "Tie!" << endl;
+                        break;
+                    
+                    case rock:
+                    case scissors:
+                        cout << "Player 1 has scored a point!" << endl;
+                        iScorePlayer1++;
+                        break;
+                    
+                    case paper:
+                    case lizard:
+                        cout << "Player 2 has scored a point!" << endl;
+                        iScorePlayer2++;
+                        break;
+                }
+                break;
+        }
+    }
+
+    if (iScorePlayer1 == 2)
+    {
+        cout << "Bazinga! Player 1 has won." << endl;
+    } else
+    {
+        cout << "Bazinga! Player 2 has won." << endl;
+    }
+}
+
+void tictactoe(char (&cArray)[], int iIndex, char cPlay)
+{
+    if (cArray[iIndex] != '?')
+    {
+        cout << "Invalid move!" << endl;
+        return;
+    }
+
+    cArray[iIndex] = cPlay;
+
+    for (int i = 0; i < 9; i++)
+    {
+        if (i % 3 == 0)
+        {
+            cout << endl;
+        }
+
+        cout << cArray[i] << " ";
+    }
+
+    cout << endl;
+
+    if ((cArray[0] == cArray[1] && cArray[1] == cArray[2] && cArray[2] != '?') ||
+        (cArray[3] == cArray[4] && cArray[4] == cArray[5] && cArray[5] != '?') ||
+        (cArray[6] == cArray[7] && cArray[7] == cArray[8] && cArray[8] != '?') ||
+        (cArray[0] == cArray[3] && cArray[3] == cArray[6] && cArray[6] != '?') ||
+        (cArray[1] == cArray[4] && cArray[4] == cArray[7] && cArray[7] != '?') ||
+        (cArray[2] == cArray[5] && cArray[5] == cArray[8] && cArray[8] != '?') ||
+        (cArray[0] == cArray[4] && cArray[4] == cArray[8] && cArray[8] != '?') ||
+        (cArray[2] == cArray[4] && cArray[4] == cArray[6] && cArray[6] != '?') )
+    {
+        cout << "Player " << cPlay << " has won!" << endl;
+        return;
     }
 }
