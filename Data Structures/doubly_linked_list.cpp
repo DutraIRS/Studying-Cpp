@@ -102,6 +102,48 @@ void deleteEnd(struct Node** head)
     free(ptrTemp);
 }
 
+void insertAfter(struct Node* ptrLocation, int iPayload)
+{
+    if (ptrLocation == nullptr)
+    {
+        cout << "Impossible insertion" << endl;
+        return;
+    }
+
+    struct Node* newNode = createNode(iPayload);
+    newNode->ptrNextNode = ptrLocation->ptrNextNode;
+    newNode->ptrPrevNode = ptrLocation;
+
+    ptrLocation->ptrNextNode = newNode;
+    if (newNode->ptrNextNode != nullptr) newNode->ptrNextNode->ptrPrevNode = newNode;
+}
+
+void deleteNode(struct Node** head, struct Node* ptrDelete)
+{
+    if (*head == nullptr || ptrDelete == nullptr)
+    {
+        cout << "Impossible deletion" << endl;
+        return;
+    }
+
+    if (*head == ptrDelete)
+    {
+        *head = ptrDelete->ptrNextNode;
+    }
+
+    if (ptrDelete->ptrNextNode != nullptr)
+    {
+        ptrDelete->ptrNextNode->ptrPrevNode = ptrDelete->ptrPrevNode;
+    }
+
+    if (ptrDelete->ptrPrevNode != nullptr)
+    {
+        ptrDelete->ptrPrevNode->ptrNextNode = ptrDelete->ptrNextNode;
+    }
+
+    free(ptrDelete);
+}
+
 int main()
 {
     cout << "===========" << endl;
@@ -143,6 +185,32 @@ int main()
     displayList(ptrHeadNode);
 
     deleteEnd(&ptrHeadNode);
+    displayList(ptrHeadNode);
+
+    cout << "===========" << endl;
+
+    insertAfter(ptrHeadNode, 1);
+    insertAfter(ptrHeadNode, 3);
+    insertAfter(ptrHeadNode->ptrNextNode, 2);
+    insertAfter(ptrHeadNode->ptrNextNode->ptrNextNode->ptrNextNode, 4);
+    insertAfter(ptrHeadNode->ptrNextNode->ptrNextNode->ptrNextNode->ptrNextNode->ptrNextNode, 4);
+    displayList(ptrHeadNode);
+
+    cout << "===========" << endl;
+
+    deleteNode(&ptrHeadNode, ptrHeadNode);
+    displayList(ptrHeadNode);
+    deleteNode(&ptrHeadNode, ptrHeadNode->ptrNextNode);
+    displayList(ptrHeadNode);
+    deleteNode(&ptrHeadNode, ptrHeadNode->ptrPrevNode);
+    deleteNode(&ptrHeadNode, ptrHeadNode->ptrNextNode->ptrNextNode);
+    displayList(ptrHeadNode);
+    deleteNode(&ptrHeadNode, ptrHeadNode->ptrNextNode->ptrNextNode);
+    displayList(ptrHeadNode);
+
+    insertAfter(ptrHeadNode, 2);
+    displayList(ptrHeadNode);
+    deleteNode(&ptrHeadNode, ptrHeadNode->ptrNextNode);
     displayList(ptrHeadNode);
 
     cout << "===========" << endl;
