@@ -29,7 +29,7 @@ struct Node* newNode(int iData)
     newNode->ptrLeft = nullptr;
     newNode->ptrRight = nullptr;
     return newNode;
-};
+}
 
 void traversePreOrder(struct Node* ptrStartingNode)
 {
@@ -67,8 +67,7 @@ struct Node* searchNode(struct Node* node, int iData)
     else if(iData == node->iPayload) return node;
     else if(iData < node->iPayload) return searchNode(node->ptrLeft, iData);
     else return searchNode(node->ptrRight, iData);
-    return nullptr;
-};
+}
 
 int main()
 {

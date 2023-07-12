@@ -255,6 +255,26 @@ void shellSort(Node** head)
     }
 }
 
+void bubbleSort(Node** head)
+{
+    Node* temp = *head;
+    int length = getLength(*head);
+
+    for (int i = 0; i < length; i++)
+    {
+        for (int j = 0; j < length - i - 1; j++)
+        {
+            temp = getNodeByIndex(*head, j);
+            Node* temp2 = getNodeByIndex(*head, j + 1);
+
+            if (temp->data > temp2->data)
+            {
+                swapNodes(head, temp, temp2);
+            }
+        }
+    }
+}
+
 int getLength(MetaNode* metaHead)
 {
     MetaNode* temp = metaHead;
@@ -425,97 +445,103 @@ int main()
     cout << "Initial List:" << endl;
     printList(head);
 
-    cout << "Length: " << getLength(head) << endl;
+    bubbleSort(&head);
 
-    swapNodes(&head, head, head->next->next);
+    cout << "\nBubble Sort:" << endl;
+
     printList(head);
 
-    cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
+    // cout << "Length: " << getLength(head) << endl;
 
-    cout << "\nSelection Sort:" << endl;
-    selectionSort(&head);
-    printList(head);
-    cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
+    // swapNodes(&head, head, head->next->next);
+    // printList(head);
 
-    cout << "\nRandomizing list..." << endl;
-    swapNodes(&head, head, head->next);
-    swapNodes(&head, head, head->next->next->next->next);
-    swapNodes(&head, head->next, head->next->next->next);
-    swapNodes(&head, head->next, head->next->next);
-    printList(head);
+    // cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
 
-    cout << "\nInsertion Sort:" << endl;
-    insertionSort(&head);
-    printList(head);
-    cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
+    // cout << "\nSelection Sort:" << endl;
+    // selectionSort(&head);
+    // printList(head);
+    // cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
 
-    cout << "\nRandomizing list..." << endl;
-    swapNodes(&head, head, head->next);
-    swapNodes(&head, head, head->next->next->next->next);
-    swapNodes(&head, head->next, head->next->next->next);
-    swapNodes(&head, head->next, head->next->next);
-    printList(head);
+    // cout << "\nRandomizing list..." << endl;
+    // swapNodes(&head, head, head->next);
+    // swapNodes(&head, head, head->next->next->next->next);
+    // swapNodes(&head, head->next, head->next->next->next);
+    // swapNodes(&head, head->next, head->next->next);
+    // printList(head);
 
-    cout << "\nShell Sort:" << endl;
-    shellSort(&head);
-    printList(head);
-    cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
+    // cout << "\nInsertion Sort:" << endl;
+    // insertionSort(&head);
+    // printList(head);
+    // cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
 
-    cout << "\nRandomizing list..." << endl;
-    swapNodes(&head, head, head->next);
-    swapNodes(&head, head, head->next->next->next->next);
-    swapNodes(&head, head->next, head->next->next->next);
-    swapNodes(&head, head->next, head->next->next);
-    printList(head);
+    // cout << "\nRandomizing list..." << endl;
+    // swapNodes(&head, head, head->next);
+    // swapNodes(&head, head, head->next->next->next->next);
+    // swapNodes(&head, head->next, head->next->next->next);
+    // swapNodes(&head, head->next, head->next->next);
+    // printList(head);
 
-    cout << "\nCreating more lists..." << endl;
-    Node* head2 = new Node;
-    head2->data = 7;
-    head2->next = nullptr;
-    head2->prev = nullptr;
+    // cout << "\nShell Sort:" << endl;
+    // shellSort(&head);
+    // printList(head);
+    // cout << "Is ordered ascending: " << isOrdered(head, "ascending") << endl;
 
-    insert(head2, 8);
-    insert(head2, 10);
-    insert(head2, 9);
-    insert(head2, 12);
-    insert(head2, 11);
-    printList(head2);
+    // cout << "\nRandomizing list..." << endl;
+    // swapNodes(&head, head, head->next);
+    // swapNodes(&head, head, head->next->next->next->next);
+    // swapNodes(&head, head->next, head->next->next->next);
+    // swapNodes(&head, head->next, head->next->next);
+    // printList(head);
 
-    Node* head3 = new Node;
-    head3->data = 18;
-    head3->next = nullptr;
-    head3->prev = nullptr;
+    // cout << "\nCreating more lists..." << endl;
+    // Node* head2 = new Node;
+    // head2->data = 7;
+    // head2->next = nullptr;
+    // head2->prev = nullptr;
 
-    insert(head3, 13);
-    insert(head3, 17);
-    insert(head3, 14);
-    insert(head3, 15);
-    insert(head3, 16);
-    printList(head3);
+    // insert(head2, 8);
+    // insert(head2, 10);
+    // insert(head2, 9);
+    // insert(head2, 12);
+    // insert(head2, 11);
+    // printList(head2);
 
-    cout << "\nCreating meta list..." << endl;
-    MetaNode* metaHead = new MetaNode;
-    metaHead->node = head;
-    metaHead->next = nullptr;
-    metaHead->prev = nullptr;
+    // Node* head3 = new Node;
+    // head3->data = 18;
+    // head3->next = nullptr;
+    // head3->prev = nullptr;
 
-    MetaNode* metaHead2 = new MetaNode;
-    metaHead2->node = head3;
-    metaHead2->next = nullptr;
-    metaHead2->prev = metaHead;
-    metaHead->next = metaHead2;
+    // insert(head3, 13);
+    // insert(head3, 17);
+    // insert(head3, 14);
+    // insert(head3, 15);
+    // insert(head3, 16);
+    // printList(head3);
 
-    MetaNode* metaHead3 = new MetaNode;
-    metaHead3->node = head2;
-    metaHead3->next = nullptr;
-    metaHead3->prev = metaHead2;
-    metaHead2->next = metaHead3;
+    // cout << "\nCreating meta list..." << endl;
+    // MetaNode* metaHead = new MetaNode;
+    // metaHead->node = head;
+    // metaHead->next = nullptr;
+    // metaHead->prev = nullptr;
 
-    printList(metaHead);
+    // MetaNode* metaHead2 = new MetaNode;
+    // metaHead2->node = head3;
+    // metaHead2->next = nullptr;
+    // metaHead2->prev = metaHead;
+    // metaHead->next = metaHead2;
 
-    cout << "\nSorting meta list..." << endl;
-    sortMetaNode(&metaHead);
-    printList(metaHead);
+    // MetaNode* metaHead3 = new MetaNode;
+    // metaHead3->node = head2;
+    // metaHead3->next = nullptr;
+    // metaHead3->prev = metaHead2;
+    // metaHead2->next = metaHead3;
+
+    // printList(metaHead);
+
+    // cout << "\nSorting meta list..." << endl;
+    // sortMetaNode(&metaHead);
+    // printList(metaHead);
 
     return 0;
 }
