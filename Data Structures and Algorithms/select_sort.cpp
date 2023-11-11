@@ -51,17 +51,7 @@ void selectSort(struct Node* head)
         {
             if (ptrCurrentNode->iData < ptrMinNode->iData)
             {
-                struct Node* ptrTemp = ptrMinNode;
-
-                ptrCurrentNode->ptrNextNode->ptrPrevNode = ptrMinNode;
-                ptrCurrentNode->ptrPrevNode->ptrNextNode = ptrMinNode;
-                ptrMinNode->ptrNextNode = ptrCurrentNode->ptrNextNode;
-                ptrMinNode->ptrPrevNode = ptrCurrentNode->ptrPrevNode;
-
-                ptrTemp->ptrNextNode->ptrPrevNode = ptrCurrentNode;
-                ptrTemp->ptrPrevNode->ptrNextNode = ptrCurrentNode;
-                ptrCurrentNode->ptrNextNode = ptrTemp->ptrNextNode;
-                ptrCurrentNode->ptrPrevNode = ptrTemp->ptrPrevNode;
+                
             }
 
             ptrCurrentNode = ptrCurrentNode->ptrNextNode;
